@@ -1,0 +1,21 @@
+version: '3'
+
+services: 
+    users:
+        build: './users'
+        ports:
+          - "3002:3000"
+        depends_on: 
+          - mongodb
+        environment:
+          - MONGO_DB_URI=mongodb://mongodb/microservices
+
+
+
+
+
+    mongodb:
+        image: mongo
+        ports:
+          - "27017:27017"
+
