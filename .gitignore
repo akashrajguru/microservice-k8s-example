@@ -5,3 +5,9 @@ docker-compose.local.mongodb.yml
 logs
 *.log
 npm-debug.log*
+
+# Currently, ignore the Angular app 
+web1
+
+# Currently, ignore the React app 
+web

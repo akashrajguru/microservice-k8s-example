@@ -3,7 +3,9 @@ const express = require("express");
 const Users = require("./models/user-model");
 const app = express();
 const bodyParser = require("body-parser");
+const cors = require("cors");
 
+app.use(cors());
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {

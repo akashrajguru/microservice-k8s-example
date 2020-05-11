@@ -1,18 +1,32 @@
 version: '3'
 services: 
     users:
-        build:
-            dockerfile: Dockerfile.dev
-            context: ./users
-        volumes: 
-            - /app/node_modules
-            - ./users:/app
-        ports:
-          - "3002:3000"
-        depends_on: 
-          - mongodb
-        environment:
-          - MONGO_DB_URI=mongodb://mongodb/microservices
+      build:
+        dockerfile: Dockerfile.dev
+        context: ./users
+      volumes: 
+        - /app/node_modules
+        - ./users:/app
+      ports:
+        - "3002:3000"
+      depends_on: 
+        - mongodb
+      environment:
+        - MONGO_DB_URI=mongodb://mongodb/microservices
+    web:
+      build:
+        dockerfile: Dockerfile.dev
+        context: ./web
+      volumes: 
+        - /web/node_modules
+        - ./web:/web
+      ports:
+        - "3003:3000"
+      depends_on:
+        - users
+      
+      
+
 
     mongodb:
         image: mongo
