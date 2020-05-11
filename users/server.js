@@ -8,7 +8,7 @@ const config = {
   };
 mongoose.connect(DB_URI, config);
 
-app.listen(3000, () => {
+app.listen(3001, () => {
   console.log("running on port 3000");
   console.log("--------------------------");
 });

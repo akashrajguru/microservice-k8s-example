@@ -8,25 +8,30 @@ services:
         - /app/node_modules
         - ./users:/app
       ports:
-        - "3002:3000"
+        - "3001:3001"
       depends_on: 
         - mongodb
       environment:
         - MONGO_DB_URI=mongodb://mongodb/microservices
+    
     web:
       build:
         dockerfile: Dockerfile.dev
         context: ./web
       volumes: 
         - /web/node_modules
-        - ./web:/web
-      ports:
-        - "3003:3000"
-      depends_on:
+        - ./web:/app
+    
+    gateway: 
+      restart: always
+      build: 
+        dockerfile: Dockerfile.dev
+        context: ./gateway
+      ports: 
+        - 4000:80
+      depends_on: 
+        - web  
         - users
-      
-      
-
 
     mongodb:
         image: mongo
